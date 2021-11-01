@@ -8,31 +8,29 @@ function editNav() {
 }
 
 // DOM Elements
-const modalbg = document.querySelector(".bground");
-const modalBtn = document.querySelectorAll(".modal-btn");
-const formData = document.querySelectorAll(".formData");
-const closeButton = document.querySelector(".close")
+const MODAL_BG = document.querySelector(".modal");
+const MODAL_BTN = document.querySelectorAll(".modal-btn");
+const FORM_DATA = document.querySelectorAll(".formData");
+const CLOSE_BUTTON = document.querySelector(".close")
 
 // launch modal event
-modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
+MODAL_BTN.forEach((btn) => btn.addEventListener("click", launchModal));
 
 // launch modal form
 function launchModal() {
-  modalbg.style.display = "block";
+  MODAL_BG.style.display = "block";
 }
 
 // Close the modal after clicking on the "x" icon.
-closeButton.onclick = function() {
-  modalbg.style.display = "none";
+CLOSE_BUTTON.onclick = function() {
+  MODAL_BG.style.display = "none";
 }
 
-// Close the modal if the user clicks outside of the modal.
+/**
+* * Close the modal if the user clicks outside of the modal.
 window.onclick = function(event) {
-  if (event.target == modalbg) {
-    modalbg.style.display = "none";
+  if (event.target == MODAL_BG) {
+    MODAL_BG.style.display = "none";
   }
 } 
-
-// TODO : change name of the "bground" to something more explicit (modal).
-
-
+*/

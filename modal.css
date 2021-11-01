@@ -37,6 +37,10 @@ img {
 .header-logo {
     float: left;
 }
+.header-logo img {
+  width: auto;
+  height: auto;
+}
 .main-navbar {
     float: right;
 }
@@ -157,7 +161,7 @@ main {
   font-size: 16px;
 }
 
-.bground {
+.modal {
   display: none;
   position: fixed;
   z-index: 1;
