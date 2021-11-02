@@ -42,6 +42,9 @@ function validateField(field){
     if (field.checkValidity()){
         return true;
     } else {
+        // Add red border around the invalid field (TODO : add this border on ALL invalid fields)
+        var errorBorder = document.querySelector('.formData');
+        errorBorder.setAttribute('data-error-visible', 'true');
         return false;
     }
 }
