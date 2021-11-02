@@ -2,7 +2,29 @@
 // Form fields validation //
 ///////////////////////////
 
-let firstName = document.getElementById("first-name");
+function fieldsValiation() {
+
+    // Check if the first name is valid
+
+    let firstName = document.getElementById("first-name");
+    if (firstName.value =="") {
+        alert("Veuillez saisir un nom");
+    }
+    else if (firstName.value.length < 2) {
+        alert("Votre nom doit contenir au moins deux caractères");
+    }
+
+    // Check if the last name is valid
+
+    let lastName = document.getElementById("last-name");
+    if (lastName.value =="") {
+        alert("Veuillez saisir un nom de famille");
+    }
+    else if (lastName.value.length < 2) {
+        alert("Votre nom de famille doit contenir au moins deux caractères");
+    }
+
+}
 
 ////////////////////////////
 // Form submit validation //
@@ -12,10 +34,10 @@ let firstName = document.getElementById("first-name");
 
 let contactForm = document.getElementById("contact-form");
 
-// Send an alert message when the form has been completed
 contactForm.addEventListener("submit", (e) => {
     // prevent validation if the form is not complete.
     e.preventDefault();
+    fieldsValiation();
     // retrieve all "input" tags with a "required attribute"
     let fields = document.querySelectorAll("input[required]");
     // this variable will be set to "false" if one field is not valid
