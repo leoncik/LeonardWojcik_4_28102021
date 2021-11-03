@@ -236,6 +236,13 @@ input[data-error]::after {
     font-size: 0.4em;
     color: red;
 } */
+
+.error-message {
+  color: red;
+  text-justify: none;
+  font-size: 1rem;
+}
+
 .checkbox-label,
 .checkbox2-label {
   position: relative;
