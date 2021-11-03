@@ -8,7 +8,7 @@ Use this link to try the project : https://leoncik.github.io/LeonardWojcik_4_281
 
 ## Test the JavaScript form validation
 
-In order to check if the JavaScript used for checking the form is valid, add the "novalidate" attribute in the balise form, like this :
+In order to check if the JavaScript used for checking the form is valid, add the "novalidate" attribute in the form tag, like this :
 
 ```html
 <form id="contact-form" name="reserve" action="index.html" method="get" novalidate>
