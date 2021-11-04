@@ -1,12 +1,3 @@
-function editNav() {
-  var x = document.getElementById("myTopnav");
-  if (x.className === "topnav") {
-    x.className += " responsive";
-  } else {
-    x.className = "topnav";
-  }
-}
-
 // DOM Elements
 const MODAL_BG = document.querySelector(".modal");
 const MODAL_BTN = document.querySelectorAll(".modal-btn");

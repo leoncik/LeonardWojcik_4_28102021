@@ -81,6 +81,17 @@ function fieldsValiation() {
 
 }
 
+// Reset fields (not currently working)
+
+function resetField(field){
+    let fieldLabel = field.previousElementSibling;
+    field.removeAttribute('data-error-visible');
+    while(fieldLabel.firstElementChild){
+        fieldLabel.removeChild(fieldLabel.firstElementChild);
+    }
+    field.valid = true;
+}
+
 ////////////////////////////
 // Form submit validation //
 ///////////////////////////
@@ -95,6 +106,10 @@ contactForm.addEventListener("submit", (e) => {
     fieldsValiation();
     // retrieve all "input" tags with a "required attribute"
     let fields = document.querySelectorAll("input[required]");
+    // reset fields after invalid submit (not currently working)
+    fields.forEach((field) => {
+        resetField(field);
+    });
     // this variable will be set to "false" if one field is not valid
     let valid = true;
 
