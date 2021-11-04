@@ -81,16 +81,17 @@ function fieldsValiation() {
 
 }
 
-// Reset fields (not currently working)
+/* Reset error mesages (not currently working)
 
 function resetField(field){
     let fieldLabel = field.previousElementSibling;
+    console.log(fieldLabel);
     field.removeAttribute('data-error-visible');
     while(fieldLabel.firstElementChild){
         fieldLabel.removeChild(fieldLabel.firstElementChild);
     }
     field.valid = true;
-}
+} */
 
 ////////////////////////////
 // Form submit validation //
@@ -106,10 +107,12 @@ contactForm.addEventListener("submit", (e) => {
     fieldsValiation();
     // retrieve all "input" tags with a "required attribute"
     let fields = document.querySelectorAll("input[required]");
-    // reset fields after invalid submit (not currently working)
+
+    /* reset error messages after invalid submit (not currently working)
     fields.forEach((field) => {
         resetField(field);
-    });
+    });*/
+
     // this variable will be set to "false" if one field is not valid
     let valid = true;
 
@@ -122,8 +125,8 @@ contactForm.addEventListener("submit", (e) => {
     } );
     // If the field is valid, submit form and display message
     if(valid){
-        e.target.submit();
-        alert('Merci pour votre inscription !');
+        submitedForm();
+        //e.target.submit();
     }
 
 
@@ -136,4 +139,32 @@ function validateField(field){
     } else {
         return false;
     }
+}
+
+// Display submit message after a valid submission
+
+function submitedForm() {
+    // Hide all data elements with the "formData" class, and "text-label" class.
+    // TODO : Needs refactoring
+    document.getElementsByClassName("formData")[0].style.visibility = "hidden";
+    document.getElementsByClassName("formData")[1].style.visibility = "hidden";
+    document.getElementsByClassName("formData")[2].style.visibility = "hidden";
+    document.getElementsByClassName("formData")[3].style.visibility = "hidden";
+    document.getElementsByClassName("formData")[4].style.visibility = "hidden";
+    document.getElementsByClassName("formData")[5].style.visibility = "hidden";
+    document.getElementsByClassName("formData")[6].style.visibility = "hidden";
+    document.getElementsByClassName("text-label")[0].style.visibility = "hidden";
+
+    // Add validation text.
+    // TODO : fix error message duplication after several clicks on submit.
+    document.getElementsByClassName("content")[0].insertAdjacentHTML('afterbegin', `<span class="submission-message">Merci d'avoir soumis vos informations d'inscription</span>`);
+
+    // Replace button text
+    let modalButton = document.querySelector(".button");
+    modalButton.value = "Fermer";
+
+    // Changes the behavior of the button (closes the modal on click)
+    modalButton.onclick = function() {
+        MODAL_BG.style.display = "none";
+      }
 }

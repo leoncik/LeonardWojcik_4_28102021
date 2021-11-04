@@ -344,6 +344,15 @@ input[data-error]::after {
   cursor: pointer;
   border: 0;
 }
+
+/* Validation message */
+.submission-message {
+  display: inline-block;
+  margin: 0 100px;
+  position: absolute;
+  top: 300px;
+}
+
 /* custom select styles */
 .custom-select {
   position: relative;
