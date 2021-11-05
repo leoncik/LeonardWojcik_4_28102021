@@ -188,6 +188,8 @@ main {
 }
 
 .modal-body {
+  width: 500px;
+  height: 722px;
   padding: 15px 8%;
   margin: 15px auto;
 }
@@ -332,6 +334,13 @@ input[data-error]::after {
 .close:after {
   transform: rotate(-45deg);
 }
+.btn-submit {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .btn-submit,
 .btn-signup {
   background: #fe142f;

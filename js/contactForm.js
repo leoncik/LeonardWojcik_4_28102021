@@ -4,21 +4,21 @@
 // Form fields validation //
 ///////////////////////////
 
-function fieldsValiation() {
+function fieldValidation() {
 
     const checkInputText = (elt, key) => {
         if (elt.value === '') {
-        // Add a custom error message
-        elt.previousElementSibling.insertAdjacentHTML('afterend', `<span class="error-message">Veuillez saisir un ${key}.</span>`);
-        // Add red border to the invalid field
-        elt.parentNode.setAttribute('data-error-visible', 'true');
-        return false;
+            // Add a custom error message
+            elt.previousElementSibling.insertAdjacentHTML('afterend', `<span class="error-message">Veuillez saisir un ${key}.</span>`);
+            // Add red border to the invalid field
+            elt.parentNode.setAttribute('data-error-visible', 'true');
+            return false;
         } else if (elt.value.length < 2) {
-        // Add a custom error message
-        elt.previousElementSibling.insertAdjacentHTML('afterend', `<span class="error-message">Votre ${key} doit contenir au moins deux caractères.</span>`);
-        // Add red border to the invalid field
-        elt.parentNode.setAttribute('data-error-visible', 'true');
-        return false;
+            // Add a custom error message
+            elt.previousElementSibling.insertAdjacentHTML('afterend', `<span class="error-message">Votre ${key} doit contenir au moins deux caractères.</span>`);
+            // Add red border to the invalid field
+            elt.parentNode.setAttribute('data-error-visible', 'true');
+            return false;
         }
         return true;
     }
@@ -134,7 +134,7 @@ let contactForm = document.getElementById("contact-form");
 contactForm.addEventListener("submit", (e) => {
     // prevent validation if the form is not complete.
     e.preventDefault();
-    fieldsValiation();
+    fieldValidation();
     // retrieve all "input" tags with a "required attribute"
     let fields = document.querySelectorAll("input[required]");
 
@@ -174,20 +174,8 @@ function validateField(field){
 // Display submit message after a valid submission
 
 function submitedForm() {
-    // Hide all data elements with the "formData" class, and "text-label" class.
-    // TODO : Needs refactoring
-    document.getElementsByClassName("formData")[0].style.visibility = "hidden";
-    document.getElementsByClassName("formData")[1].style.visibility = "hidden";
-    document.getElementsByClassName("formData")[2].style.visibility = "hidden";
-    document.getElementsByClassName("formData")[3].style.visibility = "hidden";
-    document.getElementsByClassName("formData")[4].style.visibility = "hidden";
-    document.getElementsByClassName("formData")[5].style.visibility = "hidden";
-    document.getElementsByClassName("formData")[6].style.visibility = "hidden";
-    document.getElementsByClassName("text-label")[0].style.visibility = "hidden";
-
-    // Add validation text.
-    // TODO : fix error message duplication after several clicks on submit.
-    document.getElementsByClassName("content")[0].insertAdjacentHTML('afterbegin', `<span class="submission-message">Nous vous remercions pour votre inscription</span>`);
+    // Replace all elements inside "form-data-container" and set a custom message.
+    document.getElementsByClassName("form-data-container")[0].innerHTML = "Nous vous remercions pour votre inscription";
 
     // Replace button text
     let modalButton = document.querySelector(".button");
@@ -195,6 +183,6 @@ function submitedForm() {
 
     // Changes the behavior of the button (closes the modal on click)
     modalButton.onclick = function() {
-        MODAL_BG.style.display = "none";
+        modalBg.style.display = "none";
       }
 }
