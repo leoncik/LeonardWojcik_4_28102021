@@ -1,4 +1,5 @@
 // TODO : fix error message duplication after several clicks on submit.
+// TODO : create functions to reset field error color.
 
 /////////////////////////////
 // DOM elements           //
@@ -11,6 +12,7 @@ const birthDate = document.getElementById("birthdate");
 const tournamentQuantity = document.getElementById("tournament-quantity");
 const acceptTerm = document.getElementById("checkbox1");
 const contactForm = document.getElementById("contact-form");
+let errorMessages = document.getElementsByClassName("error-message");
 
 /////////////////////////////
 // Form fields validation //
@@ -21,6 +23,7 @@ const contactForm = document.getElementById("contact-form");
 
 const checkInputText = (elt, key) => {
     if (elt.value === '') {
+        console.log("waza");
         // Add a custom error message
         elt.previousElementSibling.insertAdjacentHTML('afterend', `<span class="error-message">Veuillez saisir un ${key}.</span>`);
         // Add red border to the invalid field
@@ -32,6 +35,8 @@ const checkInputText = (elt, key) => {
         // Add red border to the invalid field
         elt.parentNode.setAttribute('data-error-visible', 'true');
         return false;
+    } else {
+        elt.parentNode.setAttribute('data-error-visible', 'false');
     }
     return true;
 }
@@ -44,6 +49,8 @@ if (email.value =="") {
     email.previousElementSibling.insertAdjacentHTML('afterend', `<span class="error-message">Veuillez saisir votre courriel.</span>`);
     // Add red border to the invalid field
     email.parentNode.setAttribute('data-error-visible', 'true');
+    } else {
+        email.parentNode.setAttribute('data-error-visible', 'false');
     }
 }
 
@@ -69,6 +76,8 @@ const checkTournamentQuantity = () => {
     tournamentQuantity.previousElementSibling.insertAdjacentHTML('afterend', `<span class="error-message">Veuillez saisir une valeur.</span>`);
     // Add red border to the invalid field
     tournamentQuantity.parentNode.setAttribute('data-error-visible', 'true');
+    } else {
+        tournamentQuantity.parentNode.setAttribute('data-error-visible', 'false');
     }
 }
 
@@ -92,17 +101,11 @@ function fieldValidation() {
     checkTerm();
 }
 
-/* Reset error mesages (not currently working)
-
-function resetField(field){
-    let fieldLabel = field.previousElementSibling;
-    console.log(fieldLabel);
-    field.removeAttribute('data-error-visible');
-    while(fieldLabel.firstElementChild){
-        fieldLabel.removeChild(fieldLabel.firstElementChild);
+const resetErrorMessages = () => {
+    while(errorMessages[0]) {
+        errorMessages[0].remove();
     }
-    field.valid = true;
-} */
+}
 
 ////////////////////////////
 // Form submit validation //
@@ -113,14 +116,10 @@ function resetField(field){
 contactForm.addEventListener("submit", (e) => {
     // prevent validation if the form is not complete.
     e.preventDefault();
+    resetErrorMessages();
     fieldValidation();
     // retrieve all "input" tags with a "required attribute"
     let fields = document.querySelectorAll("input[required]");
-
-    /* reset error messages after invalid submit (not currently working)
-    fields.forEach((field) => {
-        resetField(field);
-    });*/
 
     // this variable will be set to "false" if one field is not valid
     let valid = true;
