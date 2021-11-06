@@ -1,5 +1,4 @@
 // DOM Elements
-// Remove caps (use camel case).
 const modalBg = document.querySelector(".modal");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");

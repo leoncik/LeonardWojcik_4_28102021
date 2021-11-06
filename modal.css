@@ -189,8 +189,8 @@ main {
 
 .modal-body {
   width: 500px;
-  height: 722px;
-  padding: 15px 8%;
+  min-height: 722px;
+  padding: 15px 8% 50px 8%;
   margin: 15px auto;
 }
 

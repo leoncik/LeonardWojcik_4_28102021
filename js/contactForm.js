@@ -1,114 +1,95 @@
 // TODO : fix error message duplication after several clicks on submit.
 
 /////////////////////////////
+// DOM elements           //
+///////////////////////////
+
+const firstName = document.getElementById("first-name");
+const lastName = document.getElementById("last-name");
+const email = document.getElementById("email");
+const birthDate = document.getElementById("birthdate");
+const tournamentQuantity = document.getElementById("tournament-quantity");
+const acceptTerm = document.getElementById("checkbox1");
+const contactForm = document.getElementById("contact-form");
+
+/////////////////////////////
 // Form fields validation //
 ///////////////////////////
 
-function fieldValidation() {
 
-    const checkInputText = (elt, key) => {
-        if (elt.value === '') {
-            // Add a custom error message
-            elt.previousElementSibling.insertAdjacentHTML('afterend', `<span class="error-message">Veuillez saisir un ${key}.</span>`);
-            // Add red border to the invalid field
-            elt.parentNode.setAttribute('data-error-visible', 'true');
-            return false;
-        } else if (elt.value.length < 2) {
-            // Add a custom error message
-            elt.previousElementSibling.insertAdjacentHTML('afterend', `<span class="error-message">Votre ${key} doit contenir au moins deux caractères.</span>`);
-            // Add red border to the invalid field
-            elt.parentNode.setAttribute('data-error-visible', 'true');
-            return false;
-        }
-        return true;
+// Check if the name and surname fields are valid.
+
+const checkInputText = (elt, key) => {
+    if (elt.value === '') {
+        // Add a custom error message
+        elt.previousElementSibling.insertAdjacentHTML('afterend', `<span class="error-message">Veuillez saisir un ${key}.</span>`);
+        // Add red border to the invalid field
+        elt.parentNode.setAttribute('data-error-visible', 'true');
+        return false;
+    } else if (elt.value.length < 2) {
+        // Add a custom error message
+        elt.previousElementSibling.insertAdjacentHTML('afterend', `<span class="error-message">Votre ${key} doit contenir au moins deux caractères.</span>`);
+        // Add red border to the invalid field
+        elt.parentNode.setAttribute('data-error-visible', 'true');
+        return false;
     }
+    return true;
+}
 
-    const firstName = document.getElementById("first-name");
-    const lastName = document.getElementById("last-name");
+// Check if the e-mail address is valid
 
+const checkEmail = () => {
+if (email.value =="") {
+    // Add a custom error message
+    email.previousElementSibling.insertAdjacentHTML('afterend', `<span class="error-message">Veuillez saisir votre courriel.</span>`);
+    // Add red border to the invalid field
+    email.parentNode.setAttribute('data-error-visible', 'true');
+    }
+}
+
+// Check if the birthdate is valid
+
+const checkBirthday = () => {
+    if (birthDate.value =="") {
+    // Add a custom error message
+    birthDate.previousElementSibling.insertAdjacentHTML('afterend', `<span class="error-message">Veuillez saisir votre date de naissance.</span>`);
+    // Add red border to the invalid field
+    birthDate.parentNode.setAttribute('data-error-visible', 'true');
+    }
+}
+
+
+
+// Check if the tournament-quantity is valid
+// TODO : if the quantity is greater than 0, check if a radio box is checked.
+
+const checkTournamentQuantity = () => {
+    if (tournamentQuantity.value =="") {
+    // Add a custom error message
+    tournamentQuantity.previousElementSibling.insertAdjacentHTML('afterend', `<span class="error-message">Veuillez saisir une valeur.</span>`);
+    // Add red border to the invalid field
+    tournamentQuantity.parentNode.setAttribute('data-error-visible', 'true');
+    }
+}
+
+// Check if the "condition term" are checked
+
+const checkTerm = () => {
+    if (! acceptTerm.checked) {
+    // Add a custom error message
+    acceptTerm.insertAdjacentHTML('afterend', `<span class="error-message">Vous devez accepter les conditions d'utilisation.</span>`);
+    }
+}
+
+// Check all fields
+
+function fieldValidation() {
     checkInputText(firstName, 'prénom');
     checkInputText(lastName, 'nom');
-
-
-
-
-
-    /* old code replaced with "checkInputText" function.
-    // Check if the first name is valid
-
-    let firstName = document.getElementById("first-name");
-    if (firstName.value =="") {
-        // Add a custom error message
-        firstName.previousElementSibling.insertAdjacentHTML('afterend', `<span class="error-message">Veuillez saisir un nom.</span>`);
-        // Add red border to the invalid field
-        firstName.parentNode.setAttribute('data-error-visible', 'true');
-    }
-    else if (firstName.value.length < 2) {
-        // Add a custom error message
-        firstName.previousElementSibling.insertAdjacentHTML('afterend', `<span class="error-message">Votre nom doit contenir au moins deux caractères.</span>`);
-        // Add red border to the invalid field
-        firstName.parentNode.setAttribute('data-error-visible', 'true');
-    }
-
-    // Check if the last name is valid
-
-    let lastName = document.getElementById("last-name");
-    if (lastName.value =="") {
-        // Add a custom error message
-        lastName.previousElementSibling.insertAdjacentHTML('afterend', `<span class="error-message">Veuillez saisir un nom de famille.</span>`);
-        // Add red border to the invalid field
-        lastName.parentNode.setAttribute('data-error-visible', 'true');
-    }
-    else if (lastName.value.length < 2) {
-        // Add a custom error message
-        lastName.previousElementSibling.insertAdjacentHTML('afterend', `<span class="error-message">Votre nom de famille doit contenir au moins deux caractères.</span>`);
-        // Add red border to the invalid field
-        lastName.parentNode.setAttribute('data-error-visible', 'true');
-    }
-
-    */
-
-    // Check if the e-mail address is valid
-
-    let email = document.getElementById("email");
-    if (email.value =="") {
-        // Add a custom error message
-        email.previousElementSibling.insertAdjacentHTML('afterend', `<span class="error-message">Veuillez saisir votre courriel.</span>`);
-        // Add red border to the invalid field
-        email.parentNode.setAttribute('data-error-visible', 'true');
-    }
-
-    // Check if the birthdate is valid
-
-    let birthDate = document.getElementById("birthdate");
-    if (birthDate.value =="") {
-        // Add a custom error message
-        birthDate.previousElementSibling.insertAdjacentHTML('afterend', `<span class="error-message">Veuillez saisir votre date de naissance.</span>`);
-        // Add red border to the invalid field
-        birthDate.parentNode.setAttribute('data-error-visible', 'true');
-    }
-
-    // Check if the tournament-quantity is valid
-    // TODO : if the quantity is greater than 0, check if a radio box is checked.
-
-    let tournamentQuantity = document.getElementById("tournament-quantity");
-    if (tournamentQuantity.value =="") {
-        // Add a custom error message
-        tournamentQuantity.previousElementSibling.insertAdjacentHTML('afterend', `<span class="error-message">Veuillez saisir une valeur.</span>`);
-        // Add red border to the invalid field
-        tournamentQuantity.parentNode.setAttribute('data-error-visible', 'true');
-    }
-
-    // Check if the "condition term" are checked
-    // TODO : fix the uncheckable checkbox after error message
-
-    let acceptTerm = document.getElementById("checkbox1");
-    console.log(acceptTerm);
-    if (! acceptTerm.checked) {
-        // Add a custom error message
-        acceptTerm.insertAdjacentHTML('afterend', `<span class="error-message">Vous devez accepter les conditions d'utilisation.</span>`);
-    }
-
+    checkEmail();
+    checkBirthday();
+    checkTournamentQuantity();
+    checkTerm();
 }
 
 /* Reset error mesages (not currently working)
@@ -127,9 +108,7 @@ function resetField(field){
 // Form submit validation //
 ///////////////////////////
 
-// Retrieve DOM data of the form
-
-let contactForm = document.getElementById("contact-form");
+// Submit if the form is valid, else displays error message.
 
 contactForm.addEventListener("submit", (e) => {
     // prevent validation if the form is not complete.
