@@ -23,7 +23,6 @@ let errorMessages = document.getElementsByClassName("error-message");
 
 const checkInputText = (elt, key) => {
     if (elt.value === '') {
-        console.log("waza");
         // Add a custom error message
         elt.previousElementSibling.insertAdjacentHTML('afterend', `<span class="error-message">Veuillez saisir un ${key}.</span>`);
         // Add red border to the invalid field
@@ -41,14 +40,20 @@ const checkInputText = (elt, key) => {
     return true;
 }
 
+// Mail  regex
+
+let mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
 // Check if the e-mail address is valid
 
 const checkEmail = () => {
-if (email.value =="") {
+    if (email.value =="") {
     // Add a custom error message
     email.previousElementSibling.insertAdjacentHTML('afterend', `<span class="error-message">Veuillez saisir votre courriel.</span>`);
     // Add red border to the invalid field
     email.parentNode.setAttribute('data-error-visible', 'true');
+    } else if (! email.value.match(mailformat)) {
+        email.previousElementSibling.insertAdjacentHTML('afterend', `<span class="error-message">Veuillez saisir un courriel valide.</span>`);
     } else {
         email.parentNode.setAttribute('data-error-visible', 'false');
     }
@@ -62,6 +67,8 @@ const checkBirthday = () => {
     birthDate.previousElementSibling.insertAdjacentHTML('afterend', `<span class="error-message">Veuillez saisir votre date de naissance.</span>`);
     // Add red border to the invalid field
     birthDate.parentNode.setAttribute('data-error-visible', 'true');
+    } else {
+        birthDate.parentNode.setAttribute('data-error-visible', 'false');
     }
 }
 
