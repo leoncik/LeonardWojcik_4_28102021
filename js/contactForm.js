@@ -10,6 +10,7 @@ const lastName = document.getElementById("last-name");
 const email = document.getElementById("email");
 const birthDate = document.getElementById("birthdate");
 const tournamentQuantity = document.getElementById("tournament-quantity");
+const radioButtons = document.getElementsByClassName("checkbox-input");
 const acceptTerm = document.getElementById("checkbox1");
 const contactForm = document.getElementById("contact-form");
 let errorMessages = document.getElementsByClassName("error-message");
@@ -75,7 +76,7 @@ const checkBirthday = () => {
 
 
 // Check if the tournament-quantity is valid
-// TODO : if the quantity is greater than 0, check if a radio box is checked.
+// TODO : if the quantity is equal to 0 disable radio buttons.
 
 const checkTournamentQuantity = () => {
     if (tournamentQuantity.value =="") {
@@ -85,6 +86,29 @@ const checkTournamentQuantity = () => {
     tournamentQuantity.parentNode.setAttribute('data-error-visible', 'true');
     } else {
         tournamentQuantity.parentNode.setAttribute('data-error-visible', 'false');
+    }
+}
+
+// Check if at least one location checkbox is checked
+
+const isOneLocationChecked = () => {
+    for(let i = radioButtons.length; i--;) {
+        if (radioButtons[i].checked = true) {
+            console.log("coché !");
+            return true;
+        } else {
+            console.log("pas coché !");
+            return false;
+        }
+    }
+}
+
+// TODO : the function also display error if the quantity is valid, fix that.
+// Check the location field if tournament-quantity > 0
+const checkLocation = () => {
+    if (tournamentQuantity.value>0 && isOneLocationChecked()) {
+        tournamentQuantity.parentNode.setAttribute('data-error-visible', 'true');
+        alert("Veuillez sélectionner une ville");
     }
 }
 
@@ -105,6 +129,7 @@ function fieldValidation() {
     checkEmail();
     checkBirthday();
     checkTournamentQuantity();
+    checkLocation();
     checkTerm();
 }
 
@@ -160,7 +185,7 @@ function validateField(field){
 
 function submitedForm() {
     // Replace all elements inside "form-data-container" and set a custom message.
-    document.getElementsByClassName("form-data-container")[0].innerHTML = "Nous vous remercions pour votre inscription";
+    document.getElementsByClassName("form-data-container")[0].innerHTML = "<span class='submission-message'>Nous vous remercions pour votre inscription</span>";
 
     // Replace button text
     let modalButton = document.querySelector(".button");
