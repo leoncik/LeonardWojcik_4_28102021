@@ -89,7 +89,6 @@ const checkTournamentQuantity = () => {
 }
 
 // Check if at least one location checkbox is checked
-
 const isOneLocationChecked = () => {
     let isChecked = false;
     for(let i = radioButtons.length; i--;) {
@@ -98,6 +97,14 @@ const isOneLocationChecked = () => {
     }
     return isChecked;
 }
+
+// If a tournament quantity greater than 0 is set, add "required" attribute to the radio buttons.
+let setToRequired = () => {
+    if (tournamentQuantity.value>0) {
+        radioButtons[0].required = true;
+    }
+}
+
 
 // Check the location field if tournament-quantity > 0
 const checkLocation = () => {
@@ -124,6 +131,7 @@ function fieldValidation() {
     checkEmail();
     checkBirthday();
     checkTournamentQuantity();
+    setToRequired();
     checkLocation();
     checkTerm();
 }
