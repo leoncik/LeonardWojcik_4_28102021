@@ -1,5 +1,4 @@
-// TODO : fix error message duplication after several clicks on submit.
-// TODO : create functions to reset field error color.
+// TODO : disable location fields if tournamentQuantity = 0
 
 /////////////////////////////
 // DOM elements           //
@@ -10,7 +9,7 @@ const lastName = document.getElementById("last-name");
 const email = document.getElementById("email");
 const birthDate = document.getElementById("birthdate");
 const tournamentQuantity = document.getElementById("tournament-quantity");
-const radioButtons = document.getElementsByClassName("checkbox-input");
+const radioButtons = document.querySelectorAll(".radio-collection .checkbox-input");
 const acceptTerm = document.getElementById("checkbox1");
 const contactForm = document.getElementById("contact-form");
 let errorMessages = document.getElementsByClassName("error-message");
@@ -92,23 +91,19 @@ const checkTournamentQuantity = () => {
 // Check if at least one location checkbox is checked
 
 const isOneLocationChecked = () => {
+    let isChecked = false;
     for(let i = radioButtons.length; i--;) {
-        if (radioButtons[i].checked = true) {
-            console.log("coché !");
-            return true;
-        } else {
-            console.log("pas coché !");
-            return false;
-        }
+        isChecked = radioButtons[i].checked;
+        if (isChecked) break;
     }
+    return isChecked;
 }
 
-// TODO : the function also display error if the quantity is valid, fix that.
 // Check the location field if tournament-quantity > 0
 const checkLocation = () => {
-    if (tournamentQuantity.value>0 && isOneLocationChecked()) {
+    if (tournamentQuantity.value>0 && isOneLocationChecked() == false) {
         tournamentQuantity.parentNode.setAttribute('data-error-visible', 'true');
-        alert("Veuillez sélectionner une ville");
+        tournamentQuantity.previousElementSibling.insertAdjacentHTML('afterend', `<span class="error-message">Veuillez sélectionner une ville.</span>`);
     }
 }
 
