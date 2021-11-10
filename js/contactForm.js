@@ -1,4 +1,4 @@
-// TODO : replace .error-essage CSS with .formData[data-error]::after
+// TODO : replace .error-message CSS with .formData[data-error]::after
 
 /////////////////////////////
 // DOM elements           //
@@ -107,16 +107,10 @@ let setToRequired = () => {
 }
 
 // Disable location buttons if tournament-quantity < 0
-// TODO (refactoring) : the function disableLocationButtons(); do not work if e.target.value > 0. Error message : Uncaught ReferenceError: i is not defined.
 tournamentQuantity.addEventListener('input', (e) => {
-    //console.log(e.target.value);
-    if(e.target.value == 0) {
+    if(e.target.value) {
         disableLocationButtons();
-    } else if (e.target.value > 0) {
-        for (let i = radioButtons.length; i--;) {
-            radioButtons[i].disabled = false;
-        }
-    } ;}, false);
+    };}, false);
 
 let disableLocationButtons = () => {
     if (tournamentQuantity.value==0 || tournamentQuantity.value=="" ) {
@@ -124,7 +118,9 @@ let disableLocationButtons = () => {
             radioButtons[i].disabled = true;
         }
     } else {
-        radioButtons[i].disabled = false;                
+        for (let i = radioButtons.length; i--;) {
+            radioButtons[i].disabled = false;              
+            }
         }
 }
 
@@ -146,7 +142,6 @@ const checkTerm = () => {
 }
 
 // Disable location buttons on landing
-// TODO : (bug fix) the function disableLocationButtons(); do not work if e.target.value > 0. Error message : Uncaught ReferenceError: i is not defined.
 disableLocationButtons();
 
 // Check all fields
