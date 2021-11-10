@@ -1,5 +1,3 @@
-// TODO : replace .error-message CSS with .formData[data-error]::after
-
 /////////////////////////////
 // DOM elements           //
 ///////////////////////////
@@ -24,13 +22,15 @@ let errorMessages = document.getElementsByClassName("error-message");
 const checkInputText = (elt, key) => {
     if (elt.value === '') {
         // Add a custom error message
-        elt.insertAdjacentHTML('afterend', `<span class="error-message">Veuillez saisir un ${key}.</span>`);
+        elt.parentNode.setAttribute('data-error', 'Veuillez saisir un ${key}.');        
+        //elt.insertAdjacentHTML('afterend', `<span class="error-message">Veuillez saisir un ${key}.</span>`);
         // Add red border to the invalid field
         elt.parentNode.setAttribute('data-error-visible', 'true');
         return false;
     } else if (elt.value.length < 2) {
         // Add a custom error message
-        elt.insertAdjacentHTML('afterend', `<span class="error-message">Votre ${key} doit contenir au moins deux caractères.</span>`);
+        elt.parentNode.setAttribute('data-error', 'Votre ${key} doit contenir au moins deux caractères.'); 
+        //elt.insertAdjacentHTML('afterend', `<span class="error-message">Votre ${key} doit contenir au moins deux caractères.</span>`);
         // Add red border to the invalid field
         elt.parentNode.setAttribute('data-error-visible', 'true');
         return false;
@@ -49,11 +49,11 @@ let mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 const checkEmail = () => {
     if (email.value =="") {
     // Add a custom error message
-    email.insertAdjacentHTML('afterend', `<span class="error-message">Veuillez saisir votre courriel.</span>`);
+    email.parentNode.setAttribute('data-error', 'Veuillez saisir votre courriel.');
     // Add red border to the invalid field
     email.parentNode.setAttribute('data-error-visible', 'true');
     } else if (! email.value.match(mailformat)) {
-        email.insertAdjacentHTML('afterend', `<span class="error-message">Veuillez saisir un courriel valide.</span>`);
+        email.parentNode.setAttribute('data-error', 'Veuillez saisir un courriel valide.');
         email.parentNode.setAttribute('data-error-visible', 'true');
     } else {
         email.parentNode.setAttribute('data-error-visible', 'false');
@@ -81,7 +81,8 @@ const checkBirthday = () => {
 const checkTournamentQuantity = () => {
     if (tournamentQuantity.value =="") {
     // Add a custom error message
-    tournamentQuantity.insertAdjacentHTML('afterend', `<span class="error-message">Veuillez saisir une valeur.</span>`);
+    tournamentQuantity.parentNode.setAttribute('data-error', 'Veuillez saisir une valeur.');
+    //tournamentQuantity.insertAdjacentHTML('afterend', `<span class="error-message">Veuillez saisir une valeur.</span>`);
     // Add red border to the invalid field
     tournamentQuantity.parentNode.setAttribute('data-error-visible', 'true');
     } else {
@@ -128,7 +129,8 @@ let disableLocationButtons = () => {
 const checkLocation = () => {
     if (tournamentQuantity.value>0 && isOneLocationChecked() == false) {
         tournamentQuantity.parentNode.setAttribute('data-error-visible', 'true');
-        tournamentQuantity.insertAdjacentHTML('afterend', `<span class="error-message">Veuillez sélectionner une ville.</span>`);
+        tournamentQuantity.parentNode.setAttribute('data-error', 'Veuillez sélectionner une ville.');
+        //tournamentQuantity.insertAdjacentHTML('afterend', `<span class="error-message">Veuillez sélectionner une ville.</span>`);
     }
 }
 
@@ -137,7 +139,11 @@ const checkLocation = () => {
 const checkTerm = () => {
     if (! acceptTerm.checked) {
     // Add a custom error message
-    acceptTerm.insertAdjacentHTML('afterend', `<span class="error-message">Vous devez accepter les conditions d'utilisation.</span>`);
+    acceptTerm.parentNode.setAttribute('data-error-visible', 'true');
+    acceptTerm.parentNode.setAttribute('data-error', 'Vous devez accepter les conditions d\'utilisation.');
+    //acceptTerm.insertAdjacentHTML('afterend', `<span class="error-message">Vous devez accepter les conditions d'utilisation.</span>`);
+    } else {
+        acceptTerm.parentNode.setAttribute('data-error-visible', 'false');
     }
 }
 

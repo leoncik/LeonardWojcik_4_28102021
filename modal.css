@@ -190,7 +190,7 @@ main {
 .modal-body {
   width: 500px;
   min-height: 722px;
-  padding: 15px 8% 50px 8%;
+  padding: 15px 8% 70px 8%;
   margin: 15px auto;
 }
 
@@ -221,7 +221,7 @@ input {
   display: block;
   margin-top: 7px;
   margin-bottom: 7px;
-  text-align: right;
+  text-align: left;
   line-height: 0.3;
   opacity: 0;
   transition: 0.3s;
@@ -235,18 +235,18 @@ input {
 .formData[data-error-visible="false"] .text-control {
   border: 2px solid #0bd126;
 }
-/* original commented code. Replaced with .error-message bellow
+
 input[data-error]::after {
     content: attr(data-error);
     font-size: 0.4em;
     color: red;
-} */
-
+}
+/* old version
 .error-message {
   color: red;
   text-justify: none;
   font-size: 0.8rem;
-}
+} */
 
 input:disabled ~ .checkbox-label {
   opacity: 0.5;
