@@ -1,3 +1,5 @@
+// TODO : replace .error-essage CSS with .formData[data-error]::after
+
 /////////////////////////////
 // DOM elements           //
 ///////////////////////////
@@ -22,13 +24,13 @@ let errorMessages = document.getElementsByClassName("error-message");
 const checkInputText = (elt, key) => {
     if (elt.value === '') {
         // Add a custom error message
-        elt.previousElementSibling.insertAdjacentHTML('afterend', `<span class="error-message">Veuillez saisir un ${key}.</span>`);
+        elt.insertAdjacentHTML('afterend', `<span class="error-message">Veuillez saisir un ${key}.</span>`);
         // Add red border to the invalid field
         elt.parentNode.setAttribute('data-error-visible', 'true');
         return false;
     } else if (elt.value.length < 2) {
         // Add a custom error message
-        elt.previousElementSibling.insertAdjacentHTML('afterend', `<span class="error-message">Votre ${key} doit contenir au moins deux caractères.</span>`);
+        elt.insertAdjacentHTML('afterend', `<span class="error-message">Votre ${key} doit contenir au moins deux caractères.</span>`);
         // Add red border to the invalid field
         elt.parentNode.setAttribute('data-error-visible', 'true');
         return false;
@@ -47,38 +49,39 @@ let mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 const checkEmail = () => {
     if (email.value =="") {
     // Add a custom error message
-    email.previousElementSibling.insertAdjacentHTML('afterend', `<span class="error-message">Veuillez saisir votre courriel.</span>`);
+    email.insertAdjacentHTML('afterend', `<span class="error-message">Veuillez saisir votre courriel.</span>`);
     // Add red border to the invalid field
     email.parentNode.setAttribute('data-error-visible', 'true');
     } else if (! email.value.match(mailformat)) {
-        email.previousElementSibling.insertAdjacentHTML('afterend', `<span class="error-message">Veuillez saisir un courriel valide.</span>`);
+        email.insertAdjacentHTML('afterend', `<span class="error-message">Veuillez saisir un courriel valide.</span>`);
+        email.parentNode.setAttribute('data-error-visible', 'true');
     } else {
         email.parentNode.setAttribute('data-error-visible', 'false');
     }
 }
 
-// Check if the birthdate is valid
 
+// Check if the birthdate is valid (OPTIONAL)
+/* Uncomment this code and add a "required" statement in the HTML to enable birthdate valiation.
 const checkBirthday = () => {
     if (birthDate.value =="") {
     // Add a custom error message
-    birthDate.previousElementSibling.insertAdjacentHTML('afterend', `<span class="error-message">Veuillez saisir votre date de naissance.</span>`);
+    birthDate.insertAdjacentHTML('afterend', `<span class="error-message">Veuillez saisir votre date de naissance.</span>`);
     // Add red border to the invalid field
     birthDate.parentNode.setAttribute('data-error-visible', 'true');
     } else {
         birthDate.parentNode.setAttribute('data-error-visible', 'false');
     }
-}
+} */
 
 
 
 // Check if the tournament-quantity is valid
-// TODO : if the quantity is equal to 0 disable radio buttons.
 
 const checkTournamentQuantity = () => {
     if (tournamentQuantity.value =="") {
     // Add a custom error message
-    tournamentQuantity.previousElementSibling.insertAdjacentHTML('afterend', `<span class="error-message">Veuillez saisir une valeur.</span>`);
+    tournamentQuantity.insertAdjacentHTML('afterend', `<span class="error-message">Veuillez saisir une valeur.</span>`);
     // Add red border to the invalid field
     tournamentQuantity.parentNode.setAttribute('data-error-visible', 'true');
     } else {
@@ -129,7 +132,7 @@ let disableLocationButtons = () => {
 const checkLocation = () => {
     if (tournamentQuantity.value>0 && isOneLocationChecked() == false) {
         tournamentQuantity.parentNode.setAttribute('data-error-visible', 'true');
-        tournamentQuantity.previousElementSibling.insertAdjacentHTML('afterend', `<span class="error-message">Veuillez sélectionner une ville.</span>`);
+        tournamentQuantity.insertAdjacentHTML('afterend', `<span class="error-message">Veuillez sélectionner une ville.</span>`);
     }
 }
 
@@ -152,7 +155,7 @@ function fieldValidation() {
     checkInputText(firstName, 'prénom');
     checkInputText(lastName, 'nom');
     checkEmail();
-    checkBirthday();
+    //checkBirthday();
     checkTournamentQuantity();
     setToRequired();
     checkLocation();

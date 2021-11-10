@@ -235,7 +235,7 @@ input {
 .formData[data-error-visible="false"] .text-control {
   border: 2px solid #0bd126;
 }
-/* 
+/* original commented code. Replaced with .error-message bellow
 input[data-error]::after {
     content: attr(data-error);
     font-size: 0.4em;
@@ -245,7 +245,7 @@ input[data-error]::after {
 .error-message {
   color: red;
   text-justify: none;
-  font-size: 1rem;
+  font-size: 0.8rem;
 }
 
 input:disabled ~ .checkbox-label {
