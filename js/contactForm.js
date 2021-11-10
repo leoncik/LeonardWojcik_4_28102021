@@ -1,5 +1,3 @@
-// TODO : disable location fields if tournamentQuantity = 0
-
 /////////////////////////////
 // DOM elements           //
 ///////////////////////////
@@ -105,6 +103,27 @@ let setToRequired = () => {
     }
 }
 
+// Disable location buttons if tournament-quantity < 0
+// TODO (refactoring) : the function disableLocationButtons(); do not work if e.target.value > 0. Error message : Uncaught ReferenceError: i is not defined.
+tournamentQuantity.addEventListener('input', (e) => {
+    //console.log(e.target.value);
+    if(e.target.value == 0) {
+        disableLocationButtons();
+    } else if (e.target.value > 0) {
+        for (let i = radioButtons.length; i--;) {
+            radioButtons[i].disabled = false;
+        }
+    } ;}, false);
+
+let disableLocationButtons = () => {
+    if (tournamentQuantity.value==0 || tournamentQuantity.value=="" ) {
+        for (let i = radioButtons.length; i--;) {
+            radioButtons[i].disabled = true;
+        }
+    } else {
+        radioButtons[i].disabled = false;                
+        }
+}
 
 // Check the location field if tournament-quantity > 0
 const checkLocation = () => {
@@ -122,6 +141,10 @@ const checkTerm = () => {
     acceptTerm.insertAdjacentHTML('afterend', `<span class="error-message">Vous devez accepter les conditions d'utilisation.</span>`);
     }
 }
+
+// Disable location buttons on landing
+// TODO : (bug fix) the function disableLocationButtons(); do not work if e.target.value > 0. Error message : Uncaught ReferenceError: i is not defined.
+disableLocationButtons();
 
 // Check all fields
 

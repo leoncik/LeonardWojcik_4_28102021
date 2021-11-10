@@ -248,6 +248,10 @@ input[data-error]::after {
   font-size: 1rem;
 }
 
+input:disabled ~ .checkbox-label {
+  opacity: 0.5;
+}
+
 .checkbox-label,
 .checkbox2-label {
   position: relative;
