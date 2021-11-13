@@ -52,12 +52,15 @@ const checkEmail = () => {
     email.parentNode.setAttribute('data-error', 'Veuillez saisir votre courriel.');
     // Add red border to the invalid field
     email.parentNode.setAttribute('data-error-visible', 'true');
+    return false;
     } else if (! email.value.match(mailformat)) {
         email.parentNode.setAttribute('data-error', 'Veuillez saisir un courriel valide.');
         email.parentNode.setAttribute('data-error-visible', 'true');
+        return false;
     } else {
         email.parentNode.setAttribute('data-error-visible', 'false');
     }
+    return true;
 }
 
 
@@ -73,15 +76,19 @@ const checkBirthday = () => {
     birthDate.parentNode.setAttribute('data-error', 'Veuillez saisir votre date de naissance.');
     // Add red border to the invalid field
     birthDate.parentNode.setAttribute('data-error-visible', 'true');
+    return false;
     } else if (birthDate.valueAsNumber > now) {
         birthDate.parentNode.setAttribute('data-error', 'Vous ne pouvez pas venir du futur.');
         birthDate.parentNode.setAttribute('data-error-visible', 'true');
+        return false;
     } else if (birthDateYear < 1905) {
         birthDate.parentNode.setAttribute('data-error', 'Vous ne pouvez pas être plus vieux que la théorie de la relativité restreinte.');
         birthDate.parentNode.setAttribute('data-error-visible', 'true');
+        return false;
     } else {
         birthDate.parentNode.setAttribute('data-error-visible', 'false');
     }
+    return true;
 }
 
 
@@ -95,9 +102,11 @@ const checkTournamentQuantity = () => {
     //tournamentQuantity.insertAdjacentHTML('afterend', `<span class="error-message">Veuillez saisir une valeur.</span>`);
     // Add red border to the invalid field
     tournamentQuantity.parentNode.setAttribute('data-error-visible', 'true');
+    return false;
     } else {
         tournamentQuantity.parentNode.setAttribute('data-error-visible', 'false');
     }
+    return true;
 }
 
 // Check if at least one location checkbox is checked
@@ -108,13 +117,6 @@ const isOneLocationChecked = () => {
         if (isChecked) break;
     }
     return isChecked;
-}
-
-// If a tournament quantity greater than 0 is set, add "required" attribute to the radio buttons.
-let setToRequired = () => {
-    if (tournamentQuantity.value>0) {
-        radioButtons[0].required = true;
-    }
 }
 
 // Disable location buttons if tournament-quantity < 0
@@ -140,8 +142,9 @@ const checkLocation = () => {
     if (tournamentQuantity.value>0 && isOneLocationChecked() == false) {
         tournamentQuantity.parentNode.setAttribute('data-error-visible', 'true');
         tournamentQuantity.parentNode.setAttribute('data-error', 'Veuillez sélectionner une ville.');
-        //tournamentQuantity.insertAdjacentHTML('afterend', `<span class="error-message">Veuillez sélectionner une ville.</span>`);
+        return false;
     }
+    return true;
 }
 
 // Check if the "condition term" are checked
@@ -151,10 +154,11 @@ const checkTerm = () => {
     // Add a custom error message
     acceptTerm.parentNode.setAttribute('data-error-visible', 'true');
     acceptTerm.parentNode.setAttribute('data-error', 'Vous devez accepter les conditions d\'utilisation.');
-    //acceptTerm.insertAdjacentHTML('afterend', `<span class="error-message">Vous devez accepter les conditions d'utilisation.</span>`);
+    return false;
     } else {
         acceptTerm.parentNode.setAttribute('data-error-visible', 'false');
     }
+    return true;
 }
 
 // Disable location buttons on landing
@@ -168,9 +172,21 @@ function fieldValidation() {
     checkEmail();
     checkBirthday();
     checkTournamentQuantity();
-    setToRequired();
     checkLocation();
     checkTerm();
+}
+
+function fieldValidationIsValid() {
+    if(checkInputText(firstName, 'prénom') &&
+    checkInputText(lastName, 'nom') &&
+    checkEmail() &&
+    checkBirthday() &&
+    checkTournamentQuantity() &&
+    checkLocation() &&
+    checkTerm()) {
+    return true
+    }
+    return false
 }
 
 const resetErrorMessages = () => {
@@ -190,35 +206,10 @@ contactForm.addEventListener("submit", (e) => {
     e.preventDefault();
     resetErrorMessages();
     fieldValidation();
-    // retrieve all "input" tags with a "required attribute"
-    let fields = document.querySelectorAll("input[required]");
-
-    // this variable will be set to "false" if one field is not valid
-    let valid = true;
-
-    // Check validity of every field
-    fields.forEach((field) => {
-        // If the field is not valid, return false
-        if (! validateField(field)){
-            valid = false;
-        }
-    } );
-    // If the field is valid, submit form and display message
-    if(valid){
+    if (fieldValidationIsValid()) {
         submitedForm();
     }
-
-
 }, false);
-
-// Check if a field is valid or not.
-function validateField(field){
-    if (field.checkValidity()){
-        return true;
-    } else {
-        return false;
-    }
-}
 
 // Display submit message after a valid submission
 
