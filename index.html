@@ -17,7 +17,7 @@
       <div class="header-logo">
         <img alt="logo" src="images/Logo.png" />
       </div>
-      <div class="main-navbar">
+      <nav class="main-navbar">
         <a href="#" class="active"><span>Accueil</span></a>
         <a href="#"><span>Détails de l'évènement</span></a>
         <a href="#"><span>À propos</span></a>
@@ -26,7 +26,7 @@
         <a href="javascript:void(0);" class="icon" onclick="editNav()">
           <i class="fa fa-bars"></i>
         </a>
-      </div>
+      </nav>
     </div>
     <main>
       <div class="hero-section">
@@ -44,10 +44,11 @@
           </button>
         </div>
         <div class="hero-img">
-          <img src="images/bg_img.jpg" alt="img" />
+          <img src="images/bg_img.jpg" alt="Joueuse de jeux vidéos devant écran avec manette en main" />
         </div>
         <button class="btn-signup modal-btn">
           je m'inscris
+          <!-- ! Duplicated button for responsive. Needs improvement. -->
         </button>
       </div>
 
@@ -57,28 +58,28 @@
           <div class="modal-body">
             <form id="contact-form" name="reserve" action="index.html" method="get" novalidate>
               <div class="form-data-container">
-                <div class="formData">
+                <div class="formData" data-error="">
                   <label for="first-name">Prénom</label><br>
                   <input class="text-control" type="text" id="first-name" name="first-name" minlength="2" required /><br>
                 </div>
-                <div class="formData">
+                <div class="formData" data-error="">
                   <label for="last-name">Nom</label><br>
                   <input class="text-control" type="text" id="last-name" name="last-name" minlength="2" required /><br>
                 </div>
-                <div class="formData">
+                <div class="formData" data-error="">
                   <label for="email">E-mail</label><br>
                   <input class="text-control" type="email" id="email" name="email" required /><br>
                 </div>
-                <div class="formData">
+                <div class="formData" data-error="">
                   <label for="birthdate">Date de naissance</label><br>
-                  <input class="text-control" type="date" id="birthdate" name="birthdate" /><br>
+                  <input class="text-control" type="date" id="birthdate" name="birthdate" required /><br>
                 </div>
-                <div class="formData">
+                <div class="formData" data-error="">
                   <label for="tournament-quantity">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
                   <input type="number" class="text-control" id="tournament-quantity" name="tournament-quantity" min="0" max="99" required>
                 </div>
-                <p class="text-label">Quelles villes ?</p>
-                <div class="formData radio-collection">
+                <p class="text-label" data-error="">Quelles villes ?</p>
+                <div class="formData radio-collection" data-error="">
                   <input class="checkbox-input" type="radio" id="location1" name="location" value="New York" />
                   <label class="checkbox-label" for="location1">
                     <span class="checkbox-icon"></span>
@@ -105,9 +106,9 @@
                     Portland</label>
                 </div>
   
-                <div class="formData">
-                  <input class="checkbox-input" type="checkbox" id="checkbox1" checked required />
-                  <label class="checkbox2-label" for="checkbox1"> <!-- Required-->
+                <div class="formData" data-error="">
+                  <input class="checkbox-input" type="checkbox" id="checkbox1" required />
+                  <label class="checkbox2-label" for="checkbox1">
                     <span class="checkbox-icon"></span>
                     J'ai lu et accepté les conditions d'utilisation.
                   </label>

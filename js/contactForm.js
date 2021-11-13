@@ -40,7 +40,7 @@ const checkInputText = (elt, key) => {
     return true;
 }
 
-// Mail  regex
+// Mail regex (Needs improvements)
 
 let mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
@@ -62,17 +62,17 @@ const checkEmail = () => {
 
 
 // Check if the birthdate is valid (OPTIONAL)
-/* Uncomment this code and add a "required" statement in the HTML to enable birthdate valiation.
+
 const checkBirthday = () => {
     if (birthDate.value =="") {
     // Add a custom error message
-    birthDate.insertAdjacentHTML('afterend', `<span class="error-message">Veuillez saisir votre date de naissance.</span>`);
+    birthDate.parentNode.setAttribute('data-error', 'Veuillez saisir votre date de naissance.');
     // Add red border to the invalid field
     birthDate.parentNode.setAttribute('data-error-visible', 'true');
     } else {
         birthDate.parentNode.setAttribute('data-error-visible', 'false');
     }
-} */
+}
 
 
 
@@ -156,7 +156,7 @@ function fieldValidation() {
     checkInputText(firstName, 'prénom');
     checkInputText(lastName, 'nom');
     checkEmail();
-    //checkBirthday();
+    checkBirthday();
     checkTournamentQuantity();
     setToRequired();
     checkLocation();
@@ -196,7 +196,6 @@ contactForm.addEventListener("submit", (e) => {
     // If the field is valid, submit form and display message
     if(valid){
         submitedForm();
-        //e.target.submit();
     }
 
 
