@@ -63,12 +63,22 @@ const checkEmail = () => {
 
 // Check if the birthdate is valid (OPTIONAL)
 
+let now = Date.now();
+
 const checkBirthday = () => {
+    // Get the year of the selected birthdate and convert the string to integrate
+    let birthDateYear = parseInt(birthDate.value.substring(0,4));
     if (birthDate.value =="") {
     // Add a custom error message
     birthDate.parentNode.setAttribute('data-error', 'Veuillez saisir votre date de naissance.');
     // Add red border to the invalid field
     birthDate.parentNode.setAttribute('data-error-visible', 'true');
+    } else if (birthDate.valueAsNumber > now) {
+        birthDate.parentNode.setAttribute('data-error', 'Vous ne pouvez pas venir du futur.');
+        birthDate.parentNode.setAttribute('data-error-visible', 'true');
+    } else if (birthDateYear < 1905) {
+        birthDate.parentNode.setAttribute('data-error', 'Vous ne pouvez pas être plus vieux que la théorie de la relativité restreinte.');
+        birthDate.parentNode.setAttribute('data-error-visible', 'true');
     } else {
         birthDate.parentNode.setAttribute('data-error-visible', 'false');
     }
