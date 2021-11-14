@@ -25,7 +25,6 @@
 
 :root {
   --font-default: "DM Sans", Arial, Helvetica, sans-serif;
-  --font-slab: var(--font-default);
   --modal-duration: 0.8s;
 }
 * {
@@ -104,11 +103,17 @@ main {
   color: #ffffff;
   border-radius: 15px;
 }
+.topnav a:hover span {
+  border-bottom: 2px solid white;
+}
 
 .topnav a.active {
   background-color: #ff0000;
   color: #ffffff;
   border-radius: 15px;
+}
+.topnav a.active span {
+  border-bottom: 2px solid white;
 }
 
 .topnav .icon {
@@ -142,7 +147,6 @@ main {
   .topnav a.icon {
     float: right;
     display: block;
-    margin-top: -15px;
   }
 }
 
@@ -180,7 +184,7 @@ main {
   z-index: 1;
 }
 .hero-headline {
-  font-size: 6rem;
+  font-size: clamp(3rem, 6vw + 1rem, 6rem);
   font-weight: normal;
   white-space: nowrap;
 }
@@ -194,6 +198,7 @@ main {
   grid-column: span 8;
 }
 .hero-img img {
+  object-fit: cover;
   width: 100%;
   height: 100%;
   display: block;
@@ -222,19 +227,6 @@ main {
 
 /* 2.1.3 Footer */
 
-footer {
-  padding-left: 2vw;
-  padding-right: 2vw;
-  margin: 0 20px;
-}
-
-/* ! No element has a "footer" class */
-.footer {
-  margin: 20px;
-  padding: 10px;
-  font-family: var(--font-slab);
-}
-
 .copyrights {
   color: #fe142f;
   padding: 0;
@@ -246,12 +238,6 @@ footer {
 /* 2.2 MODAL FORM */
 
 /* 2.2.1 Layout */
-
-/* Unused */
-/*
-.smFont {
-  font-size: 16px;
-}*/
 
 .modal {
   display: none;
@@ -588,6 +574,16 @@ cause overridden declarations */
 
 
 @media screen and (max-width: 800px) {
+  /* Top navigation (needs improvements) */
+  /*
+  .topnav {
+    margin: 0;
+    padding: 30px 25px;
+    z-index: 2;
+    position: fixed;
+    background-color: white;
+  } */
+  /* Hero section */
   .hero-section {
     display: block;
     box-shadow: unset;
@@ -603,25 +599,42 @@ cause overridden declarations */
   .hero-content .btn-signup {
     display: none;
   }
+  .hero-content {
+    min-width: initial;
+    padding-bottom: 0;
+  }
   .hero-headline {
-    font-size: 4.5rem;
+    font-size: 2rem;
+    font-weight: bold;
     white-space: normal;
   }
   .hero-text {
+    margin-top: 20px;
     width: unset;
-    font-size: 1.5rem;
+    font-size: 1rem;
   }
   .hero-img img {
     border-radius: 10px;
-    margin-top: 40px;
+    margin-top: 30px;
   }
   .hero-section > .btn-signup {
     display: block;
     margin: 32px auto 10px;
     padding: 12px 35px;
   }
+  /* Footer section */
   .copyrights {
     margin-top: 50px;
     text-align: center;
+  }
+  /* MODAL FORM */
+  .modal {
+    background-color: transparent;
+  }
+  .modal-body {
+    width: 100%;
+  }
+  .content {
+    margin-top: 85px;
   }
 }
