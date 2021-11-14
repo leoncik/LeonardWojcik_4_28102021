@@ -22,16 +22,12 @@ let errorMessages = document.getElementsByClassName("error-message");
 const checkInputText = (elt, key) => {
     if (elt.value === '') {
         // Add a custom error message
-        elt.parentNode.setAttribute('data-error', 'Veuillez saisir un ${key}.');        
-        //elt.insertAdjacentHTML('afterend', `<span class="error-message">Veuillez saisir un ${key}.</span>`);
-        // Add red border to the invalid field
+        elt.parentNode.setAttribute('data-error', `Veuillez saisir un ${key}.`);        
         elt.parentNode.setAttribute('data-error-visible', 'true');
         return false;
     } else if (elt.value.length < 2) {
         // Add a custom error message
-        elt.parentNode.setAttribute('data-error', 'Votre ${key} doit contenir au moins deux caractères.'); 
-        //elt.insertAdjacentHTML('afterend', `<span class="error-message">Votre ${key} doit contenir au moins deux caractères.</span>`);
-        // Add red border to the invalid field
+        elt.parentNode.setAttribute('data-error', `Votre ${key} doit contenir au moins deux caractères.`); 
         elt.parentNode.setAttribute('data-error-visible', 'true');
         return false;
     } else {
@@ -40,7 +36,7 @@ const checkInputText = (elt, key) => {
     return true;
 }
 
-// Mail regex (Needs improvements)
+// Mail regex
 
 let mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
@@ -74,7 +70,6 @@ const checkBirthday = () => {
     if (birthDate.value =="") {
     // Add a custom error message
     birthDate.parentNode.setAttribute('data-error', 'Veuillez saisir votre date de naissance.');
-    // Add red border to the invalid field
     birthDate.parentNode.setAttribute('data-error-visible', 'true');
     return false;
     } else if (birthDate.valueAsNumber > now) {
@@ -99,10 +94,11 @@ const checkTournamentQuantity = () => {
     if (tournamentQuantity.value =="") {
     // Add a custom error message
     tournamentQuantity.parentNode.setAttribute('data-error', 'Veuillez saisir une valeur.');
-    //tournamentQuantity.insertAdjacentHTML('afterend', `<span class="error-message">Veuillez saisir une valeur.</span>`);
-    // Add red border to the invalid field
     tournamentQuantity.parentNode.setAttribute('data-error-visible', 'true');
     return false;
+    } else if (tournamentQuantity.value > 99) {
+        tournamentQuantity.parentNode.setAttribute('data-error', 'Veuillez saisir une valeur comprise entre 0 et 99.');
+        tournamentQuantity.parentNode.setAttribute('data-error-visible', 'true');
     } else {
         tournamentQuantity.parentNode.setAttribute('data-error-visible', 'false');
     }
@@ -175,6 +171,8 @@ function fieldValidation() {
     checkLocation();
     checkTerm();
 }
+
+// Check validity of all fields
 
 function fieldValidationIsValid() {
     if(checkInputText(firstName, 'prénom') &&
