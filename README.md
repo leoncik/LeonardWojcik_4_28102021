@@ -6,12 +6,12 @@ Project carried out as part of the Front-End Web Development Career Path of Open
 
 Use this link to try the project : https://leoncik.github.io/LeonardWojcik_4_28102021/
 
-## Test the JavaScript form validation
+## Issues fixed
 
-In order to check if the JavaScript used for checking the form is valid, add the "novalidate" attribute in the form tag, like this :
-
-```html
-<form id="contact-form" name="reserve" action="index.html" method="get" novalidate>
-```
-
-(don't forget to delete this attribute after your tests in order to enable the double verification !)
+- Close the modal if the user clicks on the "x" button.
+- Link HTML labels to inputs.
+- Add JavaScript validation to the form.
+- Add custom error messages to the form.
+- Add validation message when the form is submitted.
+- Fix graphical bugs in the original CSS.
+- Improve semantics and presentation of the original HTML.

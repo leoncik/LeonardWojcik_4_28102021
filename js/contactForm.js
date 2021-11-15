@@ -60,7 +60,7 @@ const checkEmail = () => {
 }
 
 
-// Check if the birthdate is valid (OPTIONAL)
+// Check if the birthdate is valid
 
 let now = Date.now();
 
@@ -68,7 +68,6 @@ const checkBirthday = () => {
     // Get the year of the selected birthdate and convert the string to integrate
     let birthDateYear = parseInt(birthDate.value.substring(0,4));
     if (birthDate.value =="") {
-    // Add a custom error message
     birthDate.parentNode.setAttribute('data-error', 'Veuillez saisir votre date de naissance.');
     birthDate.parentNode.setAttribute('data-error-visible', 'true');
     return false;
@@ -200,7 +199,6 @@ const resetErrorMessages = () => {
 // Submit if the form is valid, else displays error message.
 
 contactForm.addEventListener("submit", (e) => {
-    // prevent validation if the form is not complete.
     e.preventDefault();
     resetErrorMessages();
     fieldValidation();
@@ -219,7 +217,7 @@ function submitedForm() {
     let modalButton = document.querySelector(".button");
     modalButton.value = "Fermer";
 
-    // Changes the behavior of the button (closes the modal on click)
+    // Changes the behavior of the submit button (closes the modal on click)
     modalButton.onclick = function() {
         modalBg.style.display = "none";
       }

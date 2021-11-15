@@ -7,13 +7,25 @@
     <link rel="stylesheet" href="modal.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=DM+Sans" rel="stylesheet" />
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicons/favicon-16x16.png">
+    <link rel="manifest" href="images/favicons/site.webmanifest">
+    <link rel="mask-icon" href="images/favicons/safari-pinned-tab.svg" color="#f40909">
+    <meta name="msapplication-TileColor" content="#2b5797">
+    <meta name="theme-color" content="#ffffff">
+    <!-- JavaScript-->
     <script src="js/navigation.js" defer></script>
     <script src="js/modal.js" defer></script>
     <script src="js/contactForm.js" defer></script>
   </head>
 
   <body>
-    <div class="topnav" id="myTopnav">
+
+    <!-- HEADER -->
+
+    <header class="topnav" id="myTopnav">
       <div class="header-logo">
         <img alt="logo" src="images/Logo.png" />
       </div>
@@ -27,8 +39,12 @@
           <i class="fa fa-bars"></i>
         </a>
       </nav>
-    </div>
+    </header>
+
     <main>
+
+      <!-- HERO SECTION -->
+
       <div class="hero-section">
         <div class="hero-content">
           <h1 class="hero-headline">
@@ -40,17 +56,19 @@
             aux réservations... Places limitées !
           </p>
           <button class="btn-signup modal-btn">
-            je m'inscris
+            Je m'inscris
           </button>
         </div>
         <div class="hero-img">
           <img src="images/bg_img.jpg" alt="Joueuse de jeux vidéos devant écran avec manette en main"/>
         </div>
+        <!-- Signup button for mobile version -->
         <button class="btn-signup modal-btn">
-          je m'inscris
-          <!-- ! Duplicated button for responsive. Needs improvement. -->
+          Je m'inscris
         </button>
       </div>
+
+      <!-- MODAL -->
 
       <div class="modal">
         <div class="content">
@@ -127,6 +145,9 @@
         </div>
       </div>
     </main>
+
+    <!-- FOOTER -->
+    
     <footer>
       <p class="copyrights">
         Copyright 2014 - 2020, GameOn Inc.

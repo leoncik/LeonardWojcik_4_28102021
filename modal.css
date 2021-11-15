@@ -12,7 +12,7 @@
       2.2.4 Close button (x)
       2.2.5 Submit button
       2.2.6 Validation message
-      2.2.7 Custom select styles (UNUSED ?)
+      2.2.7 Custom select styles (UNUSED)
       2.2.8 Modal animation
 3. Components
     3.1 BUTTONS
@@ -442,9 +442,13 @@ input:disabled ~ .checkbox-label {
   margin: 0 100px;
   position: absolute;
   top: 300px;
+  left: 0;
+  font-size: 2.1rem;
+  font-weight: initial;
+  text-align: center;
 }
 
-/* 2.2.7 Custom select styles (UNUSED ?) */
+/* 2.2.7 Custom select styles (UNUSED) */
 
 .custom-select {
   position: relative;
@@ -561,7 +565,6 @@ input:disabled ~ .checkbox-label {
 cause overridden declarations */
 .btn-signup {
   outline: none;
-  text-transform: capitalize;
   font-size: 1.3rem;
   padding: 15px 23px;
   margin: 0;
@@ -574,15 +577,6 @@ cause overridden declarations */
 
 
 @media screen and (max-width: 800px) {
-  /* Top navigation (needs improvements) */
-  /*
-  .topnav {
-    margin: 0;
-    padding: 30px 25px;
-    z-index: 2;
-    position: fixed;
-    background-color: white;
-  } */
   /* Hero section */
   .hero-section {
     display: block;
@@ -636,5 +630,6 @@ cause overridden declarations */
   }
   .content {
     margin-top: 85px;
+    margin-bottom: 0;
   }
 }
