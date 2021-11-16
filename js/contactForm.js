@@ -21,16 +21,16 @@ let errorMessages = document.getElementsByClassName("error-message");
 
 const checkInputText = (elt, key) => {
     if (elt.value === '') {
-        // Add a custom error message
+        // Add a custom error message with red border around the input field
         elt.parentNode.setAttribute('data-error', `Veuillez saisir un ${key}.`);        
         elt.parentNode.setAttribute('data-error-visible', 'true');
         return false;
     } else if (elt.value.length < 2) {
-        // Add a custom error message
         elt.parentNode.setAttribute('data-error', `Votre ${key} doit contenir au moins deux caractères.`); 
         elt.parentNode.setAttribute('data-error-visible', 'true');
         return false;
     } else {
+        // Hide error message and set input border to green
         elt.parentNode.setAttribute('data-error-visible', 'false');
     }
     return true;
@@ -44,9 +44,7 @@ let mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
 const checkEmail = () => {
     if (email.value =="") {
-    // Add a custom error message
     email.parentNode.setAttribute('data-error', 'Veuillez saisir votre courriel.');
-    // Add red border to the invalid field
     email.parentNode.setAttribute('data-error-visible', 'true');
     return false;
     } else if (! email.value.match(mailformat)) {
