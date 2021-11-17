@@ -295,6 +295,9 @@ input {
   font-size: 20px;
   height: 48px;
 }
+.tournament-quantity-text {
+  margin-top: 10px;
+}
 
 /* 2.2.2 Error input style */
 
