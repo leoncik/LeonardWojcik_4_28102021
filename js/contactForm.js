@@ -130,9 +130,9 @@ let disableLocationButtons = () => {
         }
 }
 
-// Check the location field if tournament-quantity > 0
+// Check the location field if tournament-quantity > 0 and <= 99
 const checkLocation = () => {
-    if (tournamentQuantity.value>0 && isOneLocationChecked() == false) {
+    if (tournamentQuantity.value>0 && tournamentQuantity.value<=99 && isOneLocationChecked() == false) {
         tournamentQuantity.parentNode.setAttribute('data-error-visible', 'true');
         tournamentQuantity.parentNode.setAttribute('data-error', 'Veuillez sélectionner une ville.');
         return false;
