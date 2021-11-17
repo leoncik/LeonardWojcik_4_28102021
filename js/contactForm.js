@@ -96,6 +96,9 @@ const checkTournamentQuantity = () => {
     } else if (tournamentQuantity.value > 99) {
         tournamentQuantity.parentNode.setAttribute('data-error', 'Veuillez saisir une valeur comprise entre 0 et 99.');
         tournamentQuantity.parentNode.setAttribute('data-error-visible', 'true');
+    } else if(tournamentQuantity.value < 0) {
+        tournamentQuantity.parentNode.setAttribute('data-error', 'Veuillez saisir une valeur comprise entre 0 et 99.');
+        tournamentQuantity.parentNode.setAttribute('data-error-visible', 'true');
     } else {
         tournamentQuantity.parentNode.setAttribute('data-error-visible', 'false');
     }
