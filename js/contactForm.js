@@ -119,7 +119,7 @@ tournamentQuantity.addEventListener('input', (e) => {
     };}, false);
 
 let disableLocationButtons = () => {
-    if (tournamentQuantity.value==0 || tournamentQuantity.value=="" ) {
+    if (tournamentQuantity.value<=0 || tournamentQuantity.value=="" ) {
         for (let i = radioButtons.length; i--;) {
             radioButtons[i].disabled = true;
         }
