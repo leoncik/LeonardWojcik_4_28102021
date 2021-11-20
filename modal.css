@@ -141,11 +141,9 @@ main {
   }
 }
 
- @media screen and (max-width: 540px) {
-  .topnav a {display: none;}
-  .topnav a.icon {
-    float: right;
-    display: block;
+@media screen and (max-width: 340px) {
+  .topnav.responsive .icon {
+    top: 51px;
   }
 }
 
