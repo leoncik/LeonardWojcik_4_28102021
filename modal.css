@@ -398,6 +398,12 @@ input:disabled ~ .checkbox-label {
   top: 19%;
 }
 
+/* Error styles */
+
+.checkbox-label-error {
+  border: 2px solid #e54858 !important;
+}
+
 /* 2.2.4 Close button (x) */
 
 .close {

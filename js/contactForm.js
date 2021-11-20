@@ -7,7 +7,9 @@ const lastName = document.getElementById("last-name");
 const email = document.getElementById("email");
 const birthDate = document.getElementById("birthdate");
 const tournamentQuantity = document.getElementById("tournament-quantity");
+const firstRadioButton = document.getElementById("location1");
 const radioButtons = document.querySelectorAll(".radio-collection .checkbox-input");
+const checkboxIcons = document.querySelectorAll(".checkbox-icon");
 const acceptTerm = document.getElementById("checkbox1");
 const contactForm = document.getElementById("contact-form");
 let errorMessages = document.getElementsByClassName("error-message");
@@ -119,10 +121,11 @@ const isOneLocationChecked = () => {
     return isChecked;
 }
 
-// Disable location buttons if tournament-quantity < 0
+// Disable location buttons if tournament-quantity < 0 and uncheck checked locations
 tournamentQuantity.addEventListener('input', (e) => {
     if(e.target.value) {
         disableLocationButtons();
+        uncheckLocationButtons();
     };}, false);
 
 let disableLocationButtons = () => {
@@ -137,12 +140,28 @@ let disableLocationButtons = () => {
         }
 }
 
+let uncheckLocationButtons = () => {
+    if (tournamentQuantity.value<=0 || tournamentQuantity.value=="" ) {
+        for (let i = radioButtons.length; i--;) {
+            radioButtons[i].checked = false;
+        }
+    }
+}
+
 // Check the location field if tournament-quantity > 0 and <= 99
 const checkLocation = () => {
     if (tournamentQuantity.value>0 && tournamentQuantity.value<=99 && isOneLocationChecked() == false) {
-        tournamentQuantity.parentNode.setAttribute('data-error-visible', 'true');
-        tournamentQuantity.parentNode.setAttribute('data-error', 'Veuillez sélectionner une ville.');
+        firstRadioButton.parentNode.setAttribute('data-error-visible', 'true');
+        firstRadioButton.parentNode.setAttribute('data-error', 'Veuillez sélectionner une ville.');
+        for (let i = radioButtons.length; i--;) {
+            checkboxIcons[i].classList.add("checkbox-label-error");
+        }
         return false;
+    } else {
+        for (let i = radioButtons.length; i--;) {
+            checkboxIcons[i].classList.remove("checkbox-label-error");
+        }
+        firstRadioButton.parentNode.setAttribute('data-error-visible', 'false');
     }
     return true;
 }
