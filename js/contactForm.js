@@ -12,6 +12,10 @@ const acceptTerm = document.getElementById("checkbox1");
 const contactForm = document.getElementById("contact-form");
 let errorMessages = document.getElementsByClassName("error-message");
 
+// Clone form element to reset the form after successful submission.
+let emptyContactForm = contactForm.cloneNode(true);
+emptyContactForm.removeAttribute("contact-form");
+
 /////////////////////////////
 // Form fields validation //
 ///////////////////////////
@@ -197,6 +201,9 @@ const resetErrorMessages = () => {
 // Form submit validation //
 ///////////////////////////
 
+// Reset all fields on landing
+contactForm.reset();
+
 // Submit if the form is valid, else displays error message.
 
 contactForm.addEventListener("submit", (e) => {
@@ -205,6 +212,7 @@ contactForm.addEventListener("submit", (e) => {
     fieldValidation();
     if (fieldValidationIsValid()) {
         submitedForm();
+        //resetForm();
     }
 }, false);
 
@@ -215,11 +223,28 @@ function submitedForm() {
     document.getElementsByClassName("form-data-container")[0].innerHTML = "<span class='submission-message'>Nous vous remercions pour votre inscription</span>";
 
     // Replace button text
-    let modalButton = document.querySelector(".button");
+    let modalButton = document.querySelector(".btn-submit");
     modalButton.value = "Fermer";
 
     // Changes the behavior of the submit button (closes the modal on click)
     modalButton.onclick = function() {
         modalBg.style.display = "none";
+        // Test code begin
+        // Remove validation message
+        let sumbissionMessage = document.getElementsByClassName("submission-message");
+        sumbissionMessage[0].remove();
+        // reset form
+        contactForm.appendChild(emptyContactForm);
+        emptyContactForm.reset();
+        // Test code end
       }
+}
+
+// Reset form after closing the modal (WIP)
+
+function resetForm() {
+    contactForm.reset();
+    //document.querySelector(".button").onclick = function() {
+    //    contactForm.appendChild(emptyContactForm);
+    //}
 }
