@@ -1,8 +1,15 @@
-// DOM Elements
+/////////////////////////////
+// DOM elements           //
+///////////////////////////
+
 const modalBg = document.querySelector(".modal");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 const closeButton = document.querySelector(".close")
+
+/////////////////////////////
+// Modal open/close       //
+///////////////////////////
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -16,9 +23,11 @@ function launchModal() {
 }
 
 // Close the modal after clicking on the "x" icon.
-closeButton.onclick = function() {
+function closeModal() {
   modalBg.style.display = "none";
 }
+
+closeButton.addEventListener("click", closeModal);
 
 /**
 * * Close the modal if the user clicks outside of the modal.

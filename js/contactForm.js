@@ -2,20 +2,29 @@
 // DOM elements           //
 ///////////////////////////
 
+// Contact Form
+const contactForm = document.getElementById("contact-form");
+
+// Data fields
+let formDataFields = document.getElementsByClassName("formData");
+
+// Form inputs
 const firstName = document.getElementById("first-name");
 const lastName = document.getElementById("last-name");
 const email = document.getElementById("email");
 const birthDate = document.getElementById("birthdate");
 const tournamentQuantity = document.getElementById("tournament-quantity");
-const firstRadioButton = document.getElementById("location1");
-const radioButtons = document.querySelectorAll(".radio-collection .checkbox-input");
+const firstLocationCheckbox = document.getElementById("location1");
+const locationCheckboxes = document.querySelectorAll(".radio-collection .checkbox-input");
 const checkboxIcons = document.querySelectorAll(".checkbox-icon");
 const acceptTerm = document.getElementById("checkbox1");
-const contactForm = document.getElementById("contact-form");
+
+// Form submit button
+let modalButton = document.querySelector(".btn-submit");
+
+// Custom messages
 let errorMessages = document.getElementsByClassName("error-message");
 let validationMessage = document.getElementsByClassName("submission-message");
-let modalButton = document.querySelector(".btn-submit");
-let formDataFields = document.getElementsByClassName("formData");
 
 /////////////////////////////
 // Form fields validation //
@@ -41,6 +50,8 @@ const checkInputText = (elt, key) => {
     return true;
 }
 
+
+
 // Mail regex
 
 let mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
@@ -61,6 +72,7 @@ const checkEmail = () => {
     }
     return true;
 }
+
 
 
 // Check if the birthdate is valid
@@ -101,20 +113,24 @@ const checkTournamentQuantity = () => {
     } else if (tournamentQuantity.value > 99) {
         tournamentQuantity.parentNode.setAttribute('data-error', 'Veuillez saisir une valeur comprise entre 0 et 99.');
         tournamentQuantity.parentNode.setAttribute('data-error-visible', 'true');
+        return false;
     } else if(tournamentQuantity.value < 0) {
         tournamentQuantity.parentNode.setAttribute('data-error', 'Veuillez saisir une valeur comprise entre 0 et 99.');
         tournamentQuantity.parentNode.setAttribute('data-error-visible', 'true');
+        return false;
     } else {
         tournamentQuantity.parentNode.setAttribute('data-error-visible', 'false');
     }
     return true;
 }
 
+
+
 // Check if at least one location checkbox is checked
 const isOneLocationChecked = () => {
     let isChecked = false;
-    for(let i = radioButtons.length; i--;) {
-        isChecked = radioButtons[i].checked;
+    for(let i = locationCheckboxes.length; i--;) {
+        isChecked = locationCheckboxes[i].checked;
         if (isChecked) break;
     }
     return isChecked;
@@ -129,20 +145,20 @@ tournamentQuantity.addEventListener('input', (e) => {
 
 let disableLocationButtons = () => {
     if (tournamentQuantity.value<=0 || tournamentQuantity.value=="" ) {
-        for (let i = radioButtons.length; i--;) {
-            radioButtons[i].disabled = true;
+        for (let i = locationCheckboxes.length; i--;) {
+            locationCheckboxes[i].disabled = true;
         }
     } else {
-        for (let i = radioButtons.length; i--;) {
-            radioButtons[i].disabled = false;              
+        for (let i = locationCheckboxes.length; i--;) {
+            locationCheckboxes[i].disabled = false;              
             }
         }
 }
 
 let uncheckLocationButtons = () => {
     if (tournamentQuantity.value<=0 || tournamentQuantity.value=="" ) {
-        for (let i = radioButtons.length; i--;) {
-            radioButtons[i].checked = false;
+        for (let i = locationCheckboxes.length; i--;) {
+            locationCheckboxes[i].checked = false;
         }
     }
 }
@@ -150,17 +166,17 @@ let uncheckLocationButtons = () => {
 // Check the location field if tournament-quantity > 0 and <= 99
 const checkLocation = () => {
     if (tournamentQuantity.value>0 && tournamentQuantity.value<=99 && isOneLocationChecked() == false) {
-        firstRadioButton.parentNode.setAttribute('data-error-visible', 'true');
-        firstRadioButton.parentNode.setAttribute('data-error', 'Veuillez sélectionner une ville.');
-        for (let i = radioButtons.length; i--;) {
+        firstLocationCheckbox.parentNode.setAttribute('data-error-visible', 'true');
+        firstLocationCheckbox.parentNode.setAttribute('data-error', 'Veuillez sélectionner une ville.');
+        for (let i = locationCheckboxes.length; i--;) {
             checkboxIcons[i].classList.add("checkbox-label-error");
         }
         return false;
     } else {
-        for (let i = radioButtons.length; i--;) {
+        for (let i = locationCheckboxes.length; i--;) {
             checkboxIcons[i].classList.remove("checkbox-label-error");
         }
-        firstRadioButton.parentNode.setAttribute('data-error-visible', 'false');
+        firstLocationCheckbox.parentNode.setAttribute('data-error-visible', 'false');
     }
     return true;
 }
@@ -232,14 +248,19 @@ resetForm();
 
 contactForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    resetErrorMessages();
-    resetValidationMessage();
-    fieldValidation();
-    if (fieldValidationIsValid()) {
-        submitedForm();
-        setSubmitButton();
-        resetForm();
+    // Submit the form if there is no previous validation message.
+    if (!validationMessage[0]) {
+        resetErrorMessages();
+        resetValidationMessage();
+        fieldValidation();
+        // Create a validation message and reset the form.
+        if (fieldValidationIsValid()) {
+            submitedForm();
+            setSubmitButton();
+            resetForm();
+        }
     }
+
 }, false);
 
 // Display submit message after a valid submission
@@ -261,16 +282,12 @@ function resetForm() {
 
 // Set the behavior of the submit button
 
-function closeThatModal() {
-    modalBg.style.display = "none";
-}
-
 const setSubmitButton = () => {
     if (validationMessage[0]) {
         modalButton.value = "Fermer";
-        modalButton.addEventListener("click", closeThatModal);
+        modalButton.addEventListener("click", closeModal);
           } else {
             modalButton.value = "C'est parti";
-            modalButton.removeEventListener("click", closeThatModal);
+            modalButton.removeEventListener("click", closeModal);
             }
         }

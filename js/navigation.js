@@ -1,6 +1,6 @@
 // Launch hamburger menu on click
 const menuIcon = document.getElementsByClassName("icon");
-menuIcon[0].addEventListener('click', (e) => {
+menuIcon[0].addEventListener('click', () => {
   editNav();
 }, false)
 
