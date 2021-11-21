@@ -166,9 +166,25 @@ let uncheckLocationButtons = () => {
 
 // Check the location field if tournament-quantity > 0 and <= 99
 const checkLocation = () => {
+    // Count the number of checked locations
+    let counter = 0;
+    for (let j = locationCheckboxes.length; j--;) {
+        if (locationCheckboxes[j].checked) {
+                counter++;
+            }
+    }
+    // Check the validity of tournament quantity fields
     if (tournamentQuantity.value>0 && tournamentQuantity.value<=99 && isOneLocationChecked() == false) {
         firstLocationCheckbox.parentNode.setAttribute('data-error-visible', 'true');
         firstLocationCheckbox.parentNode.setAttribute('data-error', 'Veuillez sélectionner une ville.');
+        for (let i = locationCheckboxes.length; i--;) {
+            checkboxIcons[i].classList.add("checkbox-label-error");
+        }
+        return false;
+    // Check if the number of city checked is not greater than tournament quantity
+    } else if (counter > tournamentQuantity.value) {
+        firstLocationCheckbox.parentNode.setAttribute('data-error-visible', 'true');
+        firstLocationCheckbox.parentNode.setAttribute('data-error', 'Le nombre de villes sélectionnées doit être inférieur au nombre de tournois.');
         for (let i = locationCheckboxes.length; i--;) {
             checkboxIcons[i].classList.add("checkbox-label-error");
         }
@@ -263,6 +279,7 @@ contactForm.addEventListener("submit", (e) => {
             submitedForm();
             setSubmitButton();
             resetForm();
+            disableLocationButtons();
         }
     }
 
