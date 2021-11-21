@@ -1,6 +1,7 @@
 // Launch hamburger menu on click
 const menuIcon = document.getElementsByClassName("icon");
-menuIcon[0].addEventListener('click', () => {
+menuIcon[0].addEventListener('click', (e) => {
+  e.preventDefault(); // prevent going on top of page
   editNav();
 }, false)
 

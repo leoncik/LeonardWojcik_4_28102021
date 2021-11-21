@@ -225,12 +225,14 @@ function fieldValidationIsValid() {
     return false
 }
 
+// Remove existing error messages
 const resetErrorMessages = () => {
     while(errorMessages[0]) {
         errorMessages[0].remove();
     }
 }
 
+// Remove existing validation message
 const resetValidationMessage = () => {
     while(validationMessage[0]) {
         validationMessage[0].remove();
@@ -286,8 +288,8 @@ const setSubmitButton = () => {
     if (validationMessage[0]) {
         modalButton.value = "Fermer";
         modalButton.addEventListener("click", closeModal);
-          } else {
-            modalButton.value = "C'est parti";
-            modalButton.removeEventListener("click", closeModal);
-            }
-        }
+    } else {
+    modalButton.value = "C'est parti";
+    modalButton.removeEventListener("click", closeModal);
+    }
+}
