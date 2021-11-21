@@ -12,7 +12,7 @@ function launchModal() {
   modalBg.style.display = "block";
   resetValidationMessage();
   document.getElementsByClassName("form-data-container")[0].style.display = "block";
-  setSubmitBUtton();
+  setSubmitButton();
 }
 
 // Close the modal after clicking on the "x" icon.

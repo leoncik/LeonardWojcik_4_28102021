@@ -17,10 +17,6 @@ let validationMessage = document.getElementsByClassName("submission-message");
 let modalButton = document.querySelector(".btn-submit");
 let formDataFields = document.getElementsByClassName("formData");
 
-// Clone form element to reset the form after successful submission.
-let emptyContactForm = contactForm.cloneNode(true);
-emptyContactForm.removeAttribute("contact-form");
-
 /////////////////////////////
 // Form fields validation //
 ///////////////////////////
@@ -241,7 +237,7 @@ contactForm.addEventListener("submit", (e) => {
     fieldValidation();
     if (fieldValidationIsValid()) {
         submitedForm();
-        setSubmitBUtton();
+        setSubmitButton();
         resetForm();
     }
 }, false);
@@ -265,14 +261,16 @@ function resetForm() {
 
 // Set the behavior of the submit button
 
-const setSubmitBUtton = () => {
+function closeThatModal() {
+    modalBg.style.display = "none";
+}
+
+const setSubmitButton = () => {
     if (validationMessage[0]) {
         modalButton.value = "Fermer";
-        // ! This causes a permanent change of behaviour. Needs improvements.
-        //modalButton.onclick = function() {
-        //    modalBg.style.display = "none";
-        //    modalButton.value = "Fermer";
+        modalButton.addEventListener("click", closeThatModal);
           } else {
-                modalButton.value = "C'est parti";
+            modalButton.value = "C'est parti";
+            modalButton.removeEventListener("click", closeThatModal);
             }
         }
