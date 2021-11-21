@@ -355,7 +355,7 @@ input:disabled ~ .checkbox-label {
 }
 .checkbox-input:checked + .checkbox-label .checkbox-icon {
   opacity: 1;
-  background: #30c296;
+  background: #279e7a;
 }
 .checkbox-input:checked + .checkbox2-label .checkbox-icon::after {
   opacity: 1;
