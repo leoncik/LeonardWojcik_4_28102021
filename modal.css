@@ -334,7 +334,7 @@ input:disabled ~ .checkbox-label {
   top: -1px;
   transition: 0.3s;
 }
-.checkbox-label .checkbox-icon::after,
+
 .checkbox2-label .checkbox-icon::after {
   content: "";
   width: 13px;
@@ -353,7 +353,10 @@ input:disabled ~ .checkbox-label {
 .checkbox-input {
   display: none;
 }
-.checkbox-input:checked + .checkbox-label .checkbox-icon::after,
+.checkbox-input:checked + .checkbox-label .checkbox-icon {
+  opacity: 1;
+  background: #30c296;
+}
 .checkbox-input:checked + .checkbox2-label .checkbox-icon::after {
   opacity: 1;
 }
