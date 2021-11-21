@@ -17,6 +17,7 @@ const tournamentQuantity = document.getElementById("tournament-quantity");
 const firstLocationCheckbox = document.getElementById("location1");
 const locationCheckboxes = document.querySelectorAll(".radio-collection .checkbox-input");
 const checkboxIcons = document.querySelectorAll(".checkbox-icon");
+const acceptTermIcon = document.getElementsByClassName("accept-term");
 const acceptTerm = document.getElementById("checkbox1");
 
 // Form submit button
@@ -186,10 +187,12 @@ const checkLocation = () => {
 const checkTerm = () => {
     if (! acceptTerm.checked) {
     // Add a custom error message
+    acceptTermIcon[0].classList.add("checkbox-label-error");
     acceptTerm.parentNode.setAttribute('data-error-visible', 'true');
     acceptTerm.parentNode.setAttribute('data-error', 'Vous devez accepter les conditions d\'utilisation.');
     return false;
     } else {
+        acceptTermIcon[0].classList.remove("checkbox-label-error");
         acceptTerm.parentNode.setAttribute('data-error-visible', 'false');
     }
     return true;
