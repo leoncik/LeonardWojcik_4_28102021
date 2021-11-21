@@ -13,6 +13,9 @@ const checkboxIcons = document.querySelectorAll(".checkbox-icon");
 const acceptTerm = document.getElementById("checkbox1");
 const contactForm = document.getElementById("contact-form");
 let errorMessages = document.getElementsByClassName("error-message");
+let validationMessage = document.getElementsByClassName("submission-message");
+let modalButton = document.querySelector(".btn-submit");
+let formDataFields = document.getElementsByClassName("formData");
 
 // Clone form element to reset the form after successful submission.
 let emptyContactForm = contactForm.cloneNode(true);
@@ -216,54 +219,60 @@ const resetErrorMessages = () => {
     }
 }
 
+const resetValidationMessage = () => {
+    while(validationMessage[0]) {
+        validationMessage[0].remove();
+    }
+}
+
 ////////////////////////////
 // Form submit validation //
 ///////////////////////////
 
 // Reset all fields on landing
-contactForm.reset();
+resetForm();
 
 // Submit if the form is valid, else displays error message.
 
 contactForm.addEventListener("submit", (e) => {
     e.preventDefault();
     resetErrorMessages();
+    resetValidationMessage();
     fieldValidation();
     if (fieldValidationIsValid()) {
         submitedForm();
-        //resetForm();
+        setSubmitBUtton();
+        resetForm();
     }
 }, false);
 
 // Display submit message after a valid submission
 
 function submitedForm() {
-    // Replace all elements inside "form-data-container" and set a custom message.
-    document.getElementsByClassName("form-data-container")[0].innerHTML = "<span class='submission-message'>Nous vous remercions pour votre inscription</span>";
-
-    // Replace button text
-    let modalButton = document.querySelector(".btn-submit");
-    modalButton.value = "Fermer";
-
-    // Changes the behavior of the submit button (closes the modal on click)
-    modalButton.onclick = function() {
-        modalBg.style.display = "none";
-        // Test code begin
-        // Remove validation message
-        let sumbissionMessage = document.getElementsByClassName("submission-message");
-        sumbissionMessage[0].remove();
-        // reset form
-        contactForm.appendChild(emptyContactForm);
-        emptyContactForm.reset();
-        // Test code end
-      }
+    // Hide all elements inside "form-data-container" and set a custom message.
+    document.getElementsByClassName("form-data-container")[0].style.display = "none";
+    contactForm.insertAdjacentHTML("afterbegin", "<span class='submission-message'>Nous vous remercions pour votre inscription</span>");
 }
 
-// Reset form after closing the modal (WIP)
+// Reset form after closing the modal
 
 function resetForm() {
     contactForm.reset();
-    //document.querySelector(".button").onclick = function() {
-    //    contactForm.appendChild(emptyContactForm);
-    //}
+    for (let i = formDataFields.length; i--;) {
+        formDataFields[i].setAttribute('data-error-visible', '');
+    }
 }
+
+// Set the behavior of the submit button
+
+const setSubmitBUtton = () => {
+    if (validationMessage[0]) {
+        modalButton.value = "Fermer";
+        // ! This causes a permanent change of behaviour. Needs improvements.
+        //modalButton.onclick = function() {
+        //    modalBg.style.display = "none";
+        //    modalButton.value = "Fermer";
+          } else {
+                modalButton.value = "C'est parti";
+            }
+        }
