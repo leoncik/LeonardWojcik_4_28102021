@@ -335,6 +335,17 @@ input:disabled ~ .checkbox-label {
   transition: 0.3s;
 }
 
+.checkbox-label .checkbox-icon::after {
+	content: "•";
+	color: #279e7a;
+	position: relative;
+	right: 28px;
+	bottom: 19px;
+	transition: 0.3s;
+	opacity: 0;
+	font-size: 40px;
+}
+
 .checkbox2-label .checkbox-icon::after {
   content: "";
   width: 13px;
@@ -350,12 +361,12 @@ input:disabled ~ .checkbox-label {
   transition: 0.3s;
   opacity: 0;
 }
+
 .checkbox-input {
   display: none;
 }
-.checkbox-input:checked + .checkbox-label .checkbox-icon {
+.checkbox-input:checked + .checkbox-label .checkbox-icon::after {
   opacity: 1;
-  background: #279e7a;
 }
 .checkbox-input:checked + .checkbox2-label .checkbox-icon::after {
   opacity: 1;
